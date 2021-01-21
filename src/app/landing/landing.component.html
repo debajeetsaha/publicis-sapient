@@ -1,0 +1,75 @@
+<div class="main-wrapper">
+    <div class="container">
+        <h2 class="header-text">SpaceX Launch Program</h2>
+        <div class="wrapper">
+            <div class="col-filter">
+                <div class="filter-wrapper">
+                    <h3 class="main-text">Filters</h3>
+                    <div class="sub-text">
+                        Launch Year
+                    </div>
+                    <div class="filter-btn-wrapper">
+                        <div class="btn-wrapper" *ngFor="let year of years; let i = index">
+                            <div (click)="getYearData(year, i)" [class.active]="activeYrBtnId == i" class="btn">{{year}}</div>
+                        </div>
+                    </div>
+                    <div class="sub-text">
+                        Successful Launch
+                    </div>
+                    <div class="filter-btn-wrapper">
+                        <div class="btn-wrapper" *ngFor="let lc of launchData; let i = index">
+                            <div class="btn" (click)="getLaunchData(lc,i)" [class.active]="activeSLBtnId == i">{{lc}}</div>
+                        </div>
+                    </div>
+                    <div class="sub-text">
+                        Successful Landing
+                    </div>
+                    <div class="filter-btn-wrapper">
+                        <div class="btn-wrapper" *ngFor="let ld of launchData; let i = index">
+                            <div class="btn" (click)="getLandData(ld,i)" [class.active]="activeSDBtnId == i">{{ld}}</div>
+                        </div>
+                    </div>
+                    <div class="filter-btn-wrapper text-center">
+                        <div class="btn-wrapper">
+                            <div class="btn" (click)="resetFilter()">Reset All</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-item">
+                <div class="item-data">
+                    <div class="card" *ngFor="let item of itemData">
+                        <div class="card-wrapper">
+                            <img class="card-img" src="{{item.links.mission_patch_small}}" alt="Card image cap">
+                            <div class="card-body">
+                                <label class="label">{{item.mission_name}}</label>
+                                <div class="sub-label">
+                                    Mission Ids:
+                                </div>
+                                <ng-container *ngIf="item.mission_id && item.mission_id.length">
+                                    <ul class="list-unstyled" *ngFor="let id of item.mission_id">
+                                        <li>{{id}}</li>
+                                    </ul>
+                                </ng-container>
+                                <ng-container *ngIf="item.mission_id && item.mission_id.length == 0">
+                                    <ul class="list-unstyled">
+                                        <li>NA</li>
+                                    </ul>
+                                </ng-container>
+                                <div class="sub-label">
+                                    Launch Year: <span>{{item.launch_year}}</span>
+                                </div>
+                                <div class="sub-label">
+                                    Successful Launch: <span>{{item.launch_success}}</span>
+                                </div>
+                                <div class="sub-label">
+                                    Successful Landing: <span>{{item.launch_landing}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
